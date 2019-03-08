@@ -1,0 +1,35 @@
+
+
+<img lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>{{user.name}}</title>
+</head>
+<img>
+    {% if user %}
+     <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <img src="{%if user.photo %}
+                {{user.photo}}
+                {% else %}
+                https://pp.userapi.com/c304804/u165296456/a_38bf1304.jpg?ava=1
+                {%endif%}" class="img-thumbnail">
+            </div>
+            <div class="col-sm">
+                <h1><font size="16" color="white" face="fantasy">{{user.name}}</font></h1>
+                <p><font size="8" color="white" face="cursive">Specialization in game industry is the {{user.specialization}}, experience in field: {{user.gamedevexp}} years</font></p>
+            </div>
+        </div>
+      </div>
+
+    {% else %}
+        <div class="alert alert-warning">User not found!</div>
+    {% endif %}
+</body>
+</html>
+
+
+
+

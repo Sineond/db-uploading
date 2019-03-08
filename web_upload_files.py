@@ -1,6 +1,13 @@
 import os
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
+from wtforms import SelectField
+from flask_wtf import FlaskForm
+
+import sqlite3
+
+
+
 
 # указываем папку, в которую будут загружаться файлы
 UPLOAD_FOLDER = 'D:/Program Files/Uploaded files'
@@ -9,6 +16,7 @@ ALLOWED_EXTENSIONS = set(['txt', 'fb2'])
 
 # указываем класс name, чтобы фласк понимал, с чем мы работаем
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'child_lit'
 # указываем фласку на папку, заданную нами ранее
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -30,7 +38,84 @@ def upload_file():
             filename = secure_filename(file.filename)
             # сохраняем в выбранную папку под оригинальным именем 'filename'
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return render_template('file_uploaded.html')
+            return redirect('/choice')
     return render_template('upload_file.html')
+
+
+class Form(FlaskForm):
+    Booktype = SelectField('Booktype', choices=[('Dg', 'Digest'), ('Bk', 'Book')])
+
+
+
+@app.route('/choice', methods=['GET', 'POST'])
+def choice():
+    form = Form()
+    if request.method == 'POST':
+        if form.Booktype.choices == 'Digest':
+            return render_template('digest.html')
+        else:
+            return render_template('book.html')
+
+
+
+    return render_template('choice.html', form=form)
+
+
+
+
+
+@app.route('/Digest', methods=['GET', 'POST'])
+def project():
+
+    digest_created = False
+    error_message = ""
+
+    if request.method == 'POST':
+        digest = {}
+        digest['link'] = request.form.get('link')
+        digest['name'] = request.form.get('name')
+        digest['author'] = request.form.get('author')
+
+        conn = sqlite3.connect('app.db')
+        c = conn.cursor()
+        c.execute("SELECT * FROM digest_info where name='%s'" % digest['name'] )
+        if c.fetchone():
+            error_message = "Book_already_in_database"
+        else:
+            c.execute("INSERT INTO digest_info "
+                  "('link', 'name', 'author')"
+                  "VALUES "
+                  "('{link}','{name}','{author}')"
+                  "".format(**digest))
+            conn.commit()
+            digest_created = True
+        conn.close()
+        return redirect('/')
+
+
+
+app.route('/book', methods=['GET', 'POST'])
+def project():
+
+    book_created = False
+    error_message = ""
+
+    if request.method == 'POST':
+        book = {}
+        book['link'] = request.form.get('link')
+        conn = sqlite3.connect('app.db')
+        c = conn.cursor()
+        c.execute("INSERT INTO book_info "
+                  "('link')"
+                  "VALUES "
+                  "('{link}')"
+                  "".format(**book))
+        conn.commit()
+        book_created = True
+        conn.close()
+        return redirect('/')
+
+
+
 
 app.run()
