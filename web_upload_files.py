@@ -10,7 +10,7 @@ import sqlite3
 
 
 # указываем папку, в которую будут загружаться файлы
-UPLOAD_FOLDER = 'D:/Program Files/Uploaded files'
+UPLOAD_FOLDER = 'C:/Uplofiles'
 # указываем допустимые расширения
 ALLOWED_EXTENSIONS = set(['txt', 'fb2'])
 

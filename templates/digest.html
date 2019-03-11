@@ -7,42 +7,42 @@
 </head>
 <body>
 <style>
-  body { background: url(https://hdqwalls.com/download/simple-gray-abstract-background-wi-1920x1080.jpg); }
+  body { background: url(https://hdwallsource.com/img/2015/3/solid-grey-wallpaper-47193-48710-hd-wallpapers.jpg); }
 </style>
 
     {% if digest_created %}
-<div class="alert alert-success"><font size="4" color="white" face="cursive">Сборник добавлен!</font></div>
+<div class="alert alert-success"><font size="4" color="white" face="cambria">Сборник добавлен</font></div>
     {% elif error_message=="Эта книга уже существует" %}
         <div class="alert alert-danger">Такая книга уже добавлена</div>
     {%endif%}
     <div class="container">
-        <h1><font size="10" color="white" face="fantasy">Добавьте свою книгу!</h1>
+        <h1><font size="6" color="white" face="cambria">Добавьте свою книгу</h1>
 
         <form method="post" action="/Success">
             <div class="form-group">
 
-                <label><font size="4" color="white" face="cursive">Вы загружаете сборник произведений или отдельную книгу? </font></label>
+                <label><font size="4" color="white" face="cambria">Вы загружаете сборник произведений или отдельную книгу? </font></label>
 
-                <input type="radio" name="Booktype" value="Сборник"> <font size = "3"> Сборник</font><br>
+                <input type="checkbox" name="Booktype" value="Сборник"> <font size = "3"> Сборник</font><br>
 
-                <input type="radio" name="Booktype" value="Книга"> <font size = "3"> Отдельная книга</font><br>
+                <input type="checkbox" name="Booktype" value="Книга"> <font size = "3"> Отдельная книга</font><br>
 
-                <label><font size="4" color="white" face="cursive">Библиотечная ссылка на сборник </font></label>
+                <label><font size="4" color="white" face="cambria">Введите библиотечную ссылку на сборник </font></label>
                 <input class="form-control" type="url" name="link" required>
 
-                <label><font size="4" color="white" face="cursive">Название произведения из сборника(если загружаете сборник)</font></label>
+                <label><font size="4" color="white" face="cambria">Введите название произведения из сборника (если загружаете сборник)</font></label>
                 <input class="form-control" type="text" name="name">
 
-                <label><font size="4" color="white" face="cursive">Имя автора каждого произведения сборника(если загружаете сборник)</font></label>
+                <label><font size="4" color="white" face="cambria">Введите имя автора каждого произведения сборника (если загружаете сборник)</font></label>
                 <input class="form-control" type="text" name="author">
 
             </div>
-            <font size="5" color="white" face="cursive">
+            <font size="5" color="white" face="cambria">
             <button type="submit" class="btn btn-success">Добавьте сборник</button>
             <button type="reset" class="btn btn-success">Очистить</button>
             <form method="post" action="/">
                 <form>
-                  <input type="button" value="Назад!" onclick="history.back()">
+                  <input type="button" value="Назад" onclick="history.back()">
                  </form>
 
 
@@ -52,8 +52,6 @@
     </div>
 </body>
 </html>
-
-
 
 
 
