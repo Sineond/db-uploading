@@ -5,12 +5,28 @@
     <title>Document</title>
 </head>
 <body>
-<div class="container">
-    <h1><font size="8" color="Black" face="fantasy">Вы добавляете сборник или отдельную книгу?</font></h1>
-    <form method="POST">
-        {{ form.csrf_token }}
-        {{ form.Booktype }}
-        <input type="submit">
-    </form>
+<h1>Сборник или книга:</h1>
+
+<p>Выберите, что вы добавляете: сборник или отдельное произведение?.</p>
+
+<form>
+  <input type="button" value="Сборник" onclick="digest">
+  <input type="button" value="Книга" onclick="book">
+</form>
+
+<script>
+function digest {
+  <meta http-equiv="refresh" content="5;/digest">;
+}
+</script>
+
+<script>
+function book {
+  <meta http-equiv="refresh" content="5;/book">;
+}
+</script>
+
+
 </body>
 </html>
+

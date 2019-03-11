@@ -38,7 +38,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             # сохраняем в выбранную папку под оригинальным именем 'filename'
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect('/choice')
+            return redirect('/Digest')
     return render_template('upload_file.html')
 
 
@@ -59,6 +59,9 @@ def choice():
 
 
     return render_template('choice.html', form=form)
+
+
+
 
 
 
@@ -91,6 +94,8 @@ def project():
             digest_created = True
         conn.close()
         return redirect('/')
+    return(render_template('digest.html'))
+
 
 
 
@@ -115,6 +120,10 @@ def project():
         conn.close()
         return redirect('/')
 
+
+@app.route('/Success', methods=['GET', 'POST'])
+def success():
+    return render_template("Success.html")
 
 
 

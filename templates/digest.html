@@ -13,22 +13,28 @@
     {% if digest_created %}
 <div class="alert alert-success"><font size="4" color="white" face="cursive">Сборник добавлен!</font></div>
     {% elif error_message=="Эта книга уже существует" %}
-        <div class="alert alert-danger">Such project name already exists</div>
+        <div class="alert alert-danger">Такая книга уже добавлена</div>
     {%endif%}
     <div class="container">
-        <h1><font size="10" color="white" face="fantasy">Добавьте свой сборник!</h1>
+        <h1><font size="10" color="white" face="fantasy">Добавьте свою книгу!</h1>
 
-        <form method="post" action="/digest">
+        <form method="post" action="/Success">
             <div class="form-group">
 
+                <label><font size="4" color="white" face="cursive">Вы загружаете сборник произведений или отдельную книгу? </font></label>
+
+                <input type="radio" name="Booktype" value="Сборник"> <font size = "3"> Сборник</font><br>
+
+                <input type="radio" name="Booktype" value="Книга"> <font size = "3"> Отдельная книга</font><br>
+
                 <label><font size="4" color="white" face="cursive">Библиотечная ссылка на сборник </font></label>
-                <input class="form-control" type="text" name="room_name" required>
+                <input class="form-control" type="url" name="link" required>
 
-                <label><font size="4" color="white" face="cursive">Название произведения из сборника</font></label>
-                <input class="form-control" type="text" name="positions_required" required>
+                <label><font size="4" color="white" face="cursive">Название произведения из сборника(если загружаете сборник)</font></label>
+                <input class="form-control" type="text" name="name">
 
-                <label><font size="4" color="white" face="cursive">Имя автора каждого произведения</font></label>
-                <input class="form-control" type="text" name="admin_name">
+                <label><font size="4" color="white" face="cursive">Имя автора каждого произведения сборника(если загружаете сборник)</font></label>
+                <input class="form-control" type="text" name="author">
 
             </div>
             <font size="5" color="white" face="cursive">
@@ -36,7 +42,7 @@
             <button type="reset" class="btn btn-success">Очистить</button>
             <form method="post" action="/">
                 <form>
-                  <input type="button" value="Back!" onclick="history.back()">
+                  <input type="button" value="Назад!" onclick="history.back()">
                  </form>
 
 
@@ -46,3 +52,14 @@
     </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
