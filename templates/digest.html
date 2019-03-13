@@ -10,47 +10,54 @@
   body { background: url(https://hdwallsource.com/img/2015/3/solid-grey-wallpaper-47193-48710-hd-wallpapers.jpg); }
 </style>
 
-    {% if digest_created %}
+{% if digest_created %}
 <div class="alert alert-success"><font size="4" color="white" face="cambria">Сборник добавлен</font></div>
-    {% elif error_message=="Эта книга уже существует" %}
-        <div class="alert alert-danger">Такая книга уже добавлена</div>
-    {%endif%}
-    <div class="container">
-        <h1><font size="6" color="white" face="cambria">Оформите свою книгу в корпусе</h1>
+{% elif error_message=="Эта книга уже существует" %}
+<div class="alert alert-danger">Такая книга уже добавлена</div>
+{%endif%}
+<div class="container">
+    <h1><font size="6" color="white" face="cambria">Оформите ваше произведение в корпусе</h1>
 
-        <form method="post" action="/Success">
-            <div class="form-group">
+    <form method="post" action="/Success">
+        <div class="form-group">
 
-                <label><font size="4" color="white" face="cambria">Вы загружаете сборник произведений или отдельную книгу? </font></label> <div>
+            <form>
+                <div class="form-row">
+                    <div class="col-7">
+                        <input class="form-control" type="text" name="title" placeholder="Название произведения" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="year" placeholder="Год издания" name="year" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="city" placeholder="Город издания" name="city" required>
+                    </div>
+                </div>
+            </form>
 
-                <input type="checkbox" name="Booktype" value="Сборник"> <font size = "3"> Сборник</font><br>
-
-                <input type="checkbox" name="Booktype" value="Книга"> <font size = "3"> Отдельная книга</font><br>
-
-                <label><font size="4" color="white" face="cambria">Введите библиотечную ссылку на сборник </font></label>
-                <input class="form-control" type="url" name="link" required>
-
-                <label><font size="4" color="white" face="cambria">Введите название произведения из сборника (если загружаете сборник)</font></label>
-                <input class="form-control" type="text" name="name">
-
-                <label><font size="4" color="white" face="cambria">Введите имя автора каждого произведения сборника (если загружаете сборник)</font></label>
-                <input class="form-control" type="text" name="author"></div>
-
-            </div>
-            <font size="5" color="white" face="cambria" >
-            <button type="submit" class="btn btn-success">Добавьте сборник</button>
-            <button type="reset" class="btn btn-light">Очистить</button>
-            <form method="post" action="/">
-
+            <div>
                 <form>
-                        <input type="button" class="btn btn-secondary" value="Назад" onclick="history.back()">
+                    <div class="form-row">
+                        <div class="col-7">
+                            <input class="form-control" type="text" name="publisher" placeholder="Издательство" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="circulation" placeholder="Тираж" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="age_category" placeholder="Возрастная адресация" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <font size="5" color="white" face="cambria" >
+                <button type="submit" class="btn btn-success">Добавить</button>
+                <button type="reset" class="btn btn-light">Очистить</button>
+                <form method="post" action="/">
+                    <input type="button" class="btn btn-secondary" value="Назад" onclick="history.back()">
                 </form>
 
-
-
-        </form>
-    </div>
+        </div>
 </body>
 </html>
-
-
