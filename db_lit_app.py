@@ -1,59 +1,63 @@
 import sqlite3
 
-conn = sqlite3.connect('app.db')
+
+conn = sqlite3.connect('app_child.db')
 
 c = conn.cursor()
-c.execute('''
-drop TABLE digest_info''')
+
 
 c.execute('''
-CREATE TABLE digest_info(
+CREATE TABLE book_information(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    link TEXT,
-    name TEXT,
-    author TEXT,
-    Booktype TEXT
+    title TEXT,
+    year INTEGER,
+    city TEXT,
+    publisher TEXT,
+    printrun INTEGER,
+    kid INTEGER,
+    junior INTEGER,
+    youth INTEGER
 )
 ''')
+conn.commit()
 
-digest_info = [
-    {'id': '1',
-     'link': 'clck.ru/FKbY9',
-     'name': 'Deniskini Rasskazi',
-     'author': 'Viktor Dragunskiy',
-     'Booktype': 'Digest'
-     }]
+book_information = [
+    {'title': 'Денискины Рассказы',
+     'year': '1970',
+     'city': 'Москва',
+     'publisher': 'Детгиз',
+     'printrun': '30000',
+     'kid': '1',
+     'junior': '1',
+     'youth': '0'
+     },
+    {'title': 'Денискины Рассказы',
+     'year': '1970',
+     'city': 'Москва',
+     'publisher': 'Детгиз',
+     'printrun': '30000',
+     'kid': '1',
+     'junior': '1',
+     'youth': '0'
+     },
 
-for digest in digest_info:
-    c.execute("INSERT INTO digest_info "
-              "('id', 'link', 'name', 'author', 'Booktype')"
+]
+
+for book_info in book_information:
+    c.execute("INSERT INTO book_information "
+              "( 'title', 'year', 'city', 'publisher', 'printrun', 'kid', 'junior', 'youth')"
               "VALUES "
-              "('{id}','{link}', '{name}', '{author}', '{Booktype}')".format(**digest))
+              "('{title}', '{year}', '{city}', '{publisher}', '{printrun}', '{kid}', '{junior}', '{youth}' )".format(**book_info))
     conn.commit()
 
 
-
-
-
 c.execute('''
-CREATE TABLE book_info(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    link TEXT,
-    Booktype TEXT
-)
+    INSERT INTO book_information (title, year, city, publisher, printrun, kid, junior, youth)
+    VALUES
+    ("Денискины Рассказы1", 1970, "Москва", "Детгиз", 30000, 1, 1, 1)
 ''')
+conn.commit()
+conn.close()
 
-book_info = [
-    {'id': '1',
-     'link': 'clck.ru/FKbY9',
-     'Booktype': 'Book'
-     }]
-
-for book in book_info:
-    c.execute("INSERT INTO book_info "
-              "('id', 'link', 'Booktype')"
-              "VALUES "
-              "('{id}','{link}', 'Booktype')".format(**book))
-    conn.commit()
 
 
