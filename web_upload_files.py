@@ -78,10 +78,11 @@ def project():
             conn.commit()
             book_created = True
         conn.close()
-        return redirect('/Success')
-    return render_template('book_info.html',
-                           book_created=book_created,
-                           error_message=error_message)
+        return render_template('book_info.html',
+                               book_created=book_created,
+                               error_message=error_message,
+                               book_info = book_info)
+    return redirect('/Success')
 
 @app_child.route('/Success', methods=['GET', 'POST'])
 def success():

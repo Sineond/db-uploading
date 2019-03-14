@@ -16,10 +16,10 @@
         <div class="alert alert-danger">Такая книга уже есть в базе данных</div>
     {%endif%}
 <div class="container">
+    <form method="post" action="/book_info">
     <h1><font size="6" color="white" face="cambria">Оформите ваше произведение в корпусе</h1>
         <div class="form-group">
 
-         <form method="post" action="/book_info">
                 <div class="form-row">
                     <div class="col-7">
                         <input class="form-control" type="text" name="title" placeholder="Название произведения" required>
@@ -61,9 +61,10 @@
          </form>
 
         </div>
-    </form>
-    <form class="form" method="get" action="/Success">
+
+</div></body>
     </form>
 </body>
 </body>
 </html>
+

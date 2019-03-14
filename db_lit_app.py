@@ -5,6 +5,8 @@ conn = sqlite3.connect('app_child.db')
 
 c = conn.cursor()
 
+c.execute('''
+DROP TABLE book_information''')
 
 c.execute('''
 CREATE TABLE book_information(
