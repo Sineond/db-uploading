@@ -32,7 +32,7 @@ def allowed_file(filename):
 @app_child.route('/', methods=['GET', 'POST'])
 # request method  POST нужен для того чтобы загружать файлы
 def upload_file():
-    conn = sqlite3.connect('app_child.db')
+    conn = sqlite3.connect('childlit.sqlite')
     conn.row_factory = dict_factory
     c = conn.cursor()
     if request.method == 'POST':
@@ -54,27 +54,27 @@ def add_book():
     book_created = False
     error_message = ""
     if request.method == 'POST':
-        book_info = {}
-        book_info['title'] = request.form.get('title')
-        book_info['year'] = request.form.get('year')
-        book_info['city'] = request.form.get('city')
-        book_info['publisher'] = request.form.get('publisher')
-        book_info['printrun'] = request.form.get('printrun')
-        book_info['kid'] = request.form.get('kid')
-        book_info['junior'] = request.form.get('junior')
-        book_info['youth'] = request.form.get('youth')
+        meta_info = {}
+        meta_info['booktitle'] = request.form.get('booktitle')
+        meta_info['year'] = request.form.get('year')
+        meta_info['city'] = request.form.get('city')
+        meta_info['publisher'] = request.form.get('publisher')
+        meta_info['printrun'] = request.form.get('printrun')
+        meta_info['kid'] = request.form.get('kid')
+        meta_info['junior'] = request.form.get('junior')
+        meta_info['youth'] = request.form.get('youth')
 
-        conn = sqlite3.connect('app_child.db')
+        conn = sqlite3.connect('childlit.sqlite')
         c = conn.cursor()
-        c.execute("SELECT * FROM book_information WHERE title='%s'" % book_info['title'])
+        c.execute("SELECT * FROM meta_books WHERE booktitle='%s'" % meta_info['booktitle'])
         if c.fetchone():
             error_message = "book_exists"
         else:
-            c.execute("INSERT INTO book_information "
-                  "('title', 'year', 'city', 'publisher', 'printrun', 'kid', 'junior', 'youth')"
+            c.execute("INSERT INTO meta_books "
+                  "('booktitle', 'year', 'city', 'publisher', 'printrun', 'kid', 'junior', 'youth')"
                   "VALUES "
-                  "('{title}', '{year}', '{city}', '{publisher}', '{printrun}', '{kid}', '{junior}', '{youth}' )"
-                  "".format(**book_info))
+                  "('{booktitle}', '{year}', '{city}', '{publisher}', '{printrun}', '{kid}', '{junior}', '{youth}' )"
+                  "".format(**meta_info))
             conn.commit()
             book_created = True
         conn.close()

@@ -1,29 +1,16 @@
 import sqlite3
 
 
-conn = sqlite3.connect('app_child.db')
+conn = sqlite3.connect('childlit.sqlite')
 
 c = conn.cursor()
 
 
-c.execute('''
-CREATE TABLE book_information(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT,
-    year INTEGER,
-    city TEXT,
-    publisher TEXT,
-    printrun INTEGER,
-    kid INTEGER,
-    junior INTEGER,
-    youth INTEGER
-)
-''')
-conn.commit()
 
-book_information = [
-    {'id': 1,
-     'title': 'Денискины Рассказы',
+
+meta_books = [
+    {'book_id': 1,
+     'booktitle': 'Денискины Рассказы',
      'year': '1970',
      'city': 'Москва',
      'publisher': 'Детгиз',
@@ -32,8 +19,8 @@ book_information = [
      'junior': '1',
      'youth': '0'
      },
-    {'id': 2,
-     'title': 'Денискины Рассказы',
+    {'book_id': 2,
+     'booktitle': 'Денискины Рассказы',
      'year': '1970',
      'city': 'Москва',
      'publisher': 'Детгиз',
@@ -45,16 +32,16 @@ book_information = [
 
 ]
 
-for book_info in book_information:
-    c.execute("INSERT INTO book_information "
-              "('id', 'title', 'year', 'city', 'publisher', 'printrun', 'kid', 'junior', 'youth')"
+for meta_info in meta_books:
+    c.execute("INSERT INTO meta_books "
+              "('book_id', 'booktitle', 'year', 'city', 'publisher', 'printrun', 'kid', 'junior', 'youth')"
               "VALUES "
-              "('{id}', '{title}', '{year}', '{city}', '{publisher}', '{printrun}', '{kid}', '{junior}', '{youth}' )".format(**book_info))
+              "('{book_id}', '{booktitle}', '{year}', '{city}', '{publisher}', '{printrun}', '{kid}', '{junior}', '{youth}' )".format(**meta_info))
     conn.commit()
 
 
 c.execute('''
-    INSERT INTO book_information (id, title, year, city, publisher, printrun, kid, junior, youth)
+    INSERT INTO meta_books (book_id, booktitle, year, city, publisher, printrun, kid, junior, youth)
     VALUES
     (3, "Денискины Рассказы1", 1970, "Москва", "Детгиз", 30000, 1, 1, 1)
 ''')
