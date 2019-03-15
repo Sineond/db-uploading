@@ -78,13 +78,52 @@ def add_book():
             conn.commit()
             book_created = True
         conn.close()
-        return redirect("/Success")
+        return redirect("/add_author")
     return render_template('add_book.html',
                            book_created=book_created,
                            error_message=error_message)
 
+
+
+@app_child.route('/add_author', methods=['GET', 'POST'])
+def add_author():
+    author_created = False
+    error_message1 = ""
+    if request.method == 'POST':
+        meta_info_a = {}
+        meta_info_a['last'] = request.form.get('last')
+        meta_info_a['first'] = request.form.get('first')
+        meta_info_a['middle'] = request.form.get('middle')
+        meta_info_a['sex'] = request.form.get('sex')
+        meta_info_a['birth_year'] = request.form.get('birth_year')
+        meta_info_a['death_year'] = request.form.get('death_year')
+
+
+        conn = sqlite3.connect('childlit.sqlite')
+        c = conn.cursor()
+        c.execute("SELECT * FROM meta_authors WHERE last='%s'" % meta_info_a['last'])
+        if c.fetchone():
+            error_message1 = "author_exists"
+        else:
+            c.execute("INSERT INTO meta_authors "
+                      "('last', 'first', 'middle', 'sex', 'birth_year', 'death_year')"
+                      "VALUES "
+                      "('{last}', '{first}', '{middle}', '{sex}', '{birth_year}', '{death_year}')"
+                      "".format(**meta_info_a))
+            conn.commit()
+            author_created = True
+        conn.close()
+        return redirect("/Success")
+    return render_template('add_author.html',
+                           author_created=author_created,
+                           error_message1=error_message1)
+
+
 @app_child.route('/Success', methods=['GET', 'POST'])
 def success():
     return render_template("Success.html")
+
+
+
 
 app_child.run()
