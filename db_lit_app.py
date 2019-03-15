@@ -5,8 +5,6 @@ conn = sqlite3.connect('app_child.db')
 
 c = conn.cursor()
 
-c.execute('''
-DROP TABLE book_information''')
 
 c.execute('''
 CREATE TABLE book_information(
@@ -24,7 +22,8 @@ CREATE TABLE book_information(
 conn.commit()
 
 book_information = [
-    {'title': 'Денискины Рассказы',
+    {'id': 1,
+     'title': 'Денискины Рассказы',
      'year': '1970',
      'city': 'Москва',
      'publisher': 'Детгиз',
@@ -33,7 +32,8 @@ book_information = [
      'junior': '1',
      'youth': '0'
      },
-    {'title': 'Денискины Рассказы',
+    {'id': 2,
+     'title': 'Денискины Рассказы',
      'year': '1970',
      'city': 'Москва',
      'publisher': 'Детгиз',
@@ -47,16 +47,16 @@ book_information = [
 
 for book_info in book_information:
     c.execute("INSERT INTO book_information "
-              "( 'title', 'year', 'city', 'publisher', 'printrun', 'kid', 'junior', 'youth')"
+              "('id', 'title', 'year', 'city', 'publisher', 'printrun', 'kid', 'junior', 'youth')"
               "VALUES "
-              "('{title}', '{year}', '{city}', '{publisher}', '{printrun}', '{kid}', '{junior}', '{youth}' )".format(**book_info))
+              "('{id}', '{title}', '{year}', '{city}', '{publisher}', '{printrun}', '{kid}', '{junior}', '{youth}' )".format(**book_info))
     conn.commit()
 
 
 c.execute('''
-    INSERT INTO book_information (title, year, city, publisher, printrun, kid, junior, youth)
+    INSERT INTO book_information (id, title, year, city, publisher, printrun, kid, junior, youth)
     VALUES
-    ("Денискины Рассказы1", 1970, "Москва", "Детгиз", 30000, 1, 1, 1)
+    (3, "Денискины Рассказы1", 1970, "Москва", "Детгиз", 30000, 1, 1, 1)
 ''')
 conn.commit()
 conn.close()

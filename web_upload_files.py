@@ -42,15 +42,15 @@ def upload_file():
             filename = secure_filename(file.filename)
             # сохраняем в выбранную папку под оригинальным именем 'filename'
             file.save(os.path.join(app_child.config['UPLOAD_FOLDER'], filename))
-            return redirect('/book_info')
+            return redirect('/add_book')
 
     return render_template('upload_file.html')
 
 
 
 
-@app_child.route('/book_info', methods=['GET', 'POST'])
-def project():
+@app_child.route('/add_book', methods=['GET','POST'])
+def add_book():
     book_created = False
     error_message = ""
     if request.method == 'POST':
@@ -78,11 +78,10 @@ def project():
             conn.commit()
             book_created = True
         conn.close()
-        return render_template('book_info.html',
-                               book_created=book_created,
-                               error_message=error_message,
-                               book_info = book_info)
-    return redirect('/Success')
+        return redirect("/Success")
+    return render_template('add_book.html',
+                           book_created=book_created,
+                           error_message=error_message)
 
 @app_child.route('/Success', methods=['GET', 'POST'])
 def success():

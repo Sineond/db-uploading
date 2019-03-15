@@ -16,10 +16,8 @@
         <div class="alert alert-danger">Такая книга уже есть в базе данных</div>
     {%endif%}
 <div class="container">
-    <form method="post" action="/book_info">
     <h1><font size="6" color="white" face="cambria">Оформите ваше произведение в корпусе</h1>
-        <div class="form-group">
-
+            <form method = "post" action = "/add_book">
                 <div class="form-row">
                     <div class="col-7">
                         <input class="form-control" type="text" name="title" placeholder="Название произведения" required>
@@ -53,7 +51,7 @@
             </div>
 
                     <font size="5" color="white" face="cambria" >
-                <button type="submit" class="btn btn-success">Добавить</button>
+                <button type="submit" class="btn btn-light" formmethod="post">Добавить</button>
                 <button type="reset" class="btn btn-light">Очистить</button>
                 <form method="post" action="/">
                     <input type="button" class="btn btn-secondary" value="Назад" onclick="history.back()">
