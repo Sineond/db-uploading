@@ -15,8 +15,9 @@
     {% elif error_message=="book_exists" %}
         <div class="alert alert-danger">Такая книга уже есть в базе данных</div>
     {%endif%}
+    <br>
 <div class="container">
-    <h1><font size="6" color="white" face="cambria">Оформите ваше произведение в корпусе</h1>
+    <h1><font size="6" color="white" face="cambria">Оформите ваше произведение в корпусе</h1><br>
             <form method = "post" action = "/add_book">
                 <div class="form-row">
                     <div class="col-7">
@@ -26,7 +27,7 @@
                         <input type="text" class="form-control" name="year" placeholder="Год издания" >
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" name="city" placeholder="Город издания" >
+                        <input type="text" class="form-control" name="city" placeholder="Город издания" ><br>
                     </div>
                 </div>
 
