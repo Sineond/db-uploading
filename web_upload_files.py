@@ -14,7 +14,7 @@ def dict_factory(cursor, row):
     return d
 
 # указываем папку, в которую будут загружаться файлы
-UPLOAD_FOLDER = 'D:/Program Files/Uploaded Files'
+UPLOAD_FOLDER = 'C:/UploFiles'
 # указываем допустимые расширения
 ALLOWED_EXTENSIONS = set(['txt', 'fb2'])
 
