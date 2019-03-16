@@ -1,9 +1,10 @@
 import sqlite3
 
 
-conn = sqlite3.connect('childlit.sqlite')
+conn = sqlite3.connect('childlit_new.sqlite')
 
 c = conn.cursor()
+c.execute("PRAGMA foreign_keys = ON")
 
 meta_books = [
     {'book_id': 1,

@@ -4,6 +4,9 @@ from werkzeug.utils import secure_filename
 import sqlite3
 
 
+
+
+
 def dict_factory(cursor, row):
     d = {}
     for idx, col in enumerate(cursor.description):
@@ -32,7 +35,7 @@ def allowed_file(filename):
 @app_child.route('/', methods=['GET', 'POST'])
 # request method  POST нужен для того чтобы загружать файлы
 def upload_file():
-    conn = sqlite3.connect('childlit.sqlite')
+    conn = sqlite3.connect('childlit_new.sqlite')
     conn.row_factory = dict_factory
     c = conn.cursor()
     if request.method == 'POST':
@@ -64,12 +67,14 @@ def add_book():
         meta_info['junior'] = request.form.get('junior')
         meta_info['youth'] = request.form.get('youth')
 
-        conn = sqlite3.connect('childlit.sqlite')
+        conn = sqlite3.connect('childlit_new.sqlite')
         c = conn.cursor()
+        c.execute("PRAGMA foreign_keys = ON")
         c.execute("SELECT * FROM meta_books WHERE booktitle='%s'" % meta_info['booktitle'])
         if c.fetchone():
             error_message = "book_exists"
         else:
+            c.execute("PRAGMA foreign_keys = ON")
             c.execute("INSERT INTO meta_books "
                   "('booktitle', 'year', 'city', 'publisher', 'printrun', 'kid', 'junior', 'youth')"
                   "VALUES "
@@ -99,12 +104,14 @@ def add_author():
         meta_info_a['death_year'] = request.form.get('death_year')
 
 
-        conn = sqlite3.connect('childlit.sqlite')
+        conn = sqlite3.connect('childlit_new.sqlite')
         c = conn.cursor()
+        c.execute("PRAGMA foreign_keys = ON")
         c.execute("SELECT * FROM meta_authors WHERE last='%s'" % meta_info_a['last'])
         if c.fetchone():
             error_message1 = "author_exists"
         else:
+            c.execute("PRAGMA foreign_keys = ON")
             c.execute("INSERT INTO meta_authors "
                       "('last', 'first', 'middle', 'sex', 'birth_year', 'death_year')"
                       "VALUES "
