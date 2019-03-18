@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Create project</title>
+</head>
+<form>
+<style>
+  body { background: url(https://hdwallsource.com/img/2015/3/solid-grey-wallpaper-47193-48710-hd-wallpapers.jpg); }
+</style>
+<body>
+    <br>
+<div class="container">
+    <h1><font size="6" color="white" face="cambria">Оформите автора произведения</h1><br>
+            <form method = "post" action = "/add_book">
+                <div class="form-row">
+                    <div class="col-7">
+                        <input class="form-control" type="text" name="author_name" placeholder="Имя и фамилия автора, как указано на книге (например, А.Гайдар, вместо Аркадия Гайдара)" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="title" placeholder="Название книги" required  >
+                    </div>
+
+            </div>
+
+                    <font size="5" color="white" face="cambria" >
+                <button type="submit" class="btn btn-light" formmethod="post">Добавить</button>
+                <button type="reset" class="btn btn-light">Очистить</button>
+                <form method="post" action="/">
+                    <input type="button" class="btn btn-secondary" value="Назад" onclick="history.back()">
+                </form></font>
+         </form>
+
+        </div>
+
+</div></body>
+    </form>
+</body>
+</body>
+</html>

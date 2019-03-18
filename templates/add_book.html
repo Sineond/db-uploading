@@ -21,7 +21,7 @@
             <form method = "post" action = "/add_book">
                 <div class="form-row">
                     <div class="col-7">
-                        <input class="form-control" type="text" name="booktitle" placeholder="Название произведения" required>
+                        <input class="form-control" type="text" name="booktitle" placeholder="Заглавие произведения" required>
                     </div>
                     <div class="col">
                         <input type="text" class="form-control" name="year" placeholder="Год издания" >
@@ -36,7 +36,10 @@
                 <font>
                     <div class="form-row">
                         <div class="col-7">
-                            <input class="form-control" type="text" name="publisher" placeholder="Издательство" >
+                            <input class="form-control" type="text" name="publisher" placeholder="Издательство как написано на книге" >
+                        </div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" name="publisher_unified" placeholder="Унифицированное издательство (Напр. Детгиз)" >
                         </div>
                         <div class="col">
                             <input type="text" class="form-control" name="printrun" placeholder="Тираж" >

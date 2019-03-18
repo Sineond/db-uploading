@@ -63,6 +63,7 @@ def add_book():
         meta_info['year'] = request.form.get('year')
         meta_info['city'] = request.form.get('city')
         meta_info['publisher'] = request.form.get('publisher')
+        meta_info['publisher_unified'] = request.form.get('publisher_unified')
         meta_info['printrun'] = request.form.get('printrun')
         meta_info['kid'] = request.form.get('kid')
         meta_info['junior'] = request.form.get('junior')
@@ -77,9 +78,9 @@ def add_book():
         else:
             c.execute("PRAGMA foreign_keys = ON")
             c.execute("INSERT INTO meta_books "
-                  "('booktitle', 'year', 'city', 'publisher', 'printrun', 'kid', 'junior', 'youth')"
+                  "('booktitle', 'year', 'city', 'publisher', 'publisher_unified', 'printrun', 'kid', 'junior', 'youth')"
                   "VALUES "
-                  "('{booktitle}', '{year}', '{city}', '{publisher}', '{printrun}', '{kid}', '{junior}', '{youth}' )"
+                  "('{booktitle}', '{year}', '{city}', '{publisher}', '{publisher_unified}', '{printrun}', '{kid}', '{junior}', '{youth}' )"
                   "".format(**meta_info))
             conn.commit()
             book_created = True
@@ -122,17 +123,37 @@ def add_author():
             conn.commit()
             author_created = True
         conn.close()
-        return redirect("/Success")
+        return redirect("/add_edition")
     return render_template('add_author.html',
                            author_created=author_created,
                            error_message1=error_message1)
 
 
+@app_child.route('/add_edition', methods=['GET', 'POST'])
+def add_edition():
+    if request.method == 'POST':
+        meta_edit = {}
+        meta_edit['author_name'] = request.form.get('author_name')
+        meta_edit['title'] = request.form.get('title')
+        meta_edit['book_id'] = request.form.get('book_id')
+
+        conn = sqlite3.connect('childlit_new.sqlite')
+        c = conn.cursor()
+        c.execute("PRAGMA foreign_keys = ON")
+        c.execute("INSERT INTO meta_editions "
+                      "('author_name', 'title')"
+                      "VALUES "
+                      "('{author_name}', '{title}')"
+                      "".format(**meta_edit))
+        conn.commit()
+        conn.close()
+        return redirect("/Success")
+    return render_template('add_edition.html')
+
+
 @app_child.route('/Success', methods=['GET', 'POST'])
 def success():
     return render_template("Success.html")
-
-
 
 
 app_child.run()
