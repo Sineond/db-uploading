@@ -1,7 +1,7 @@
 import sqlite3
 
 
-conn = sqlite3.connect('childlit_new.sqlite')
+conn = sqlite3.connect('child.sqlite')
 
 c = conn.cursor()
 c.execute("PRAGMA foreign_keys = ON")

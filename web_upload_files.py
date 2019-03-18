@@ -58,6 +58,7 @@ def add_book():
     error_message = ""
     if request.method == 'POST':
         meta_info = {}
+        meta_edit = {}
         meta_info['book_id'] = request.form.get('book_id')
         meta_info['booktitle'] = request.form.get('booktitle')
         meta_info['year'] = request.form.get('year')
@@ -68,10 +69,9 @@ def add_book():
         meta_info['kid'] = request.form.get('kid')
         meta_info['junior'] = request.form.get('junior')
         meta_info['youth'] = request.form.get('youth')
-
         conn = sqlite3.connect('childlit_new.sqlite')
         c = conn.cursor()
-        c.execute("PRAGMA foreign_keys = ON")
+
         c.execute("SELECT * FROM meta_books WHERE booktitle='%s'" % meta_info['booktitle'])
         if c.fetchone():
             error_message = "book_exists"
@@ -82,7 +82,14 @@ def add_book():
                   "VALUES "
                   "('{booktitle}', '{year}', '{city}', '{publisher}', '{publisher_unified}', '{printrun}', '{kid}', '{junior}', '{youth}' )"
                   "".format(**meta_info))
+
+            c.execute("INSERT INTO meta_editions "
+                      "('book_id')"
+                      "VALUES "
+                      "('{book_id}'')"
+                      "".format(**meta_edit))
             conn.commit()
+
             book_created = True
         conn.close()
         return redirect("/add_author")
@@ -139,12 +146,12 @@ def add_edition():
 
         conn = sqlite3.connect('childlit_new.sqlite')
         c = conn.cursor()
-        c.execute("PRAGMA foreign_keys = ON")
         c.execute("INSERT INTO meta_editions "
                       "('author_name', 'title')"
                       "VALUES "
                       "('{author_name}', '{title}')"
                       "".format(**meta_edit))
+
         conn.commit()
         conn.close()
         return redirect("/Success")
