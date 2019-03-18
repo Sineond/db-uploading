@@ -58,6 +58,7 @@ def add_book():
     error_message = ""
     if request.method == 'POST':
         meta_info = {}
+        meta_info['book_id'] = request.form.get('book_id')
         meta_info['booktitle'] = request.form.get('booktitle')
         meta_info['year'] = request.form.get('year')
         meta_info['city'] = request.form.get('city')
@@ -96,6 +97,7 @@ def add_author():
     error_message1 = ""
     if request.method == 'POST':
         meta_info_a = {}
+        meta_info_a['author_id'] = request.form.get('author_id')
         meta_info_a['last'] = request.form.get('last')
         meta_info_a['first'] = request.form.get('first')
         meta_info_a['middle'] = request.form.get('middle')
