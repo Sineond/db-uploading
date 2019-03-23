@@ -31,16 +31,13 @@
                     </div>
                 </div>
 
-
-
-            <div>
+                <div>
                 <font>
                     <div class="form-row">
                         <div class="col-7">
                             <h1><font size="4" color="white" face="cambria">Выберите пол автора:</h1>
                             <input type="radio" name="sex" value="М"> Мужской<br>
                             <input type="radio" name="sex" value="Ж"> Женский<br></font>
-
                         </div>
                         <div class="col">
                             <input type="text" class="form-control" name="birth_year" placeholder="Год рождения" >
@@ -48,7 +45,7 @@
                         <div class="col">
                         <input type="text" class="form-control" name="death_year" placeholder="Год смерти" >
                         </div>
-                    </div>
+                 </div>
 
 
             </div>
@@ -59,6 +56,26 @@
                 <form method="post" action="/">
                     <input type="button" class="btn btn-secondary" value="Назад" onclick="history.back()">
                 </form></font>
+
+                <div class="form-row">
+                    <div class="col-7">
+                        <input class="form-control" type="text" name="author_name" placeholder="Имя и фамилия автора, как указано на книге (например, А.Гайдар, вместо Аркадия Гайдара)" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="title" placeholder="Название книги" required  >
+                    </div>
+
+    <h1><font size="6" color="white" face="cambria">Оформите издание:</h1><br>
+                <div class="form-row">
+                    <div class="col-7">
+                        <input class="form-control" type="text" name="author_name" placeholder="Имя и фамилия автора, как указано на книге (например, А.Гайдар, вместо Аркадия Гайдара)" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="title" placeholder="Название книги" required >
+                    </div>
+
+            </div>
+
          </form>
 
         </div>

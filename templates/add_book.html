@@ -10,24 +10,40 @@
   body { background: url(https://hdwallsource.com/img/2015/3/solid-grey-wallpaper-47193-48710-hd-wallpapers.jpg); }
 </style>
 <style>
-
-
 </style>
 
+<div class="container">
+    <h1><font size="4" color="white" face="cambria">Оформите издание:</h1><br>
+            <form method = "post" action = "/">
+                 <div class="form-row">
+                     <div class="col-10">
+                         <input type="text" class="form-control"  name="author_name" placeholder="Имя и фамилия автора, как указано на книге" required>
+                     </div>
+                     &nbsp;
+                     <div class="col-10">
+                         <input type="text" class="form-control" name="title" placeholder="Название книги" required >
+                     </div>
+                 </div>
+            </form>
+   </div>
+
+&nbsp;
 
 
 
 <div class="container">
-    <h1><font size="6" color="white" face="cambria">Оформите ваше произведение в корпусе:</h1><br>
-            <form method = "post" action = "/add_book">
+    <h1><font size="4" color="white" face="cambria">Оформите ваше произведение в корпусе:</h1><br>
+            <form method = "post" action = "/">
                 <div class="form-row">
                     <div class="col-7">
                         <input class="form-control" type="text" name="booktitle" placeholder="Заглавие произведения" required>
                     </div>
-                    <div class="col">
+                    &nbsp;
+                    <div class="col-7">
                         <input type="text" class="form-control" name="year" placeholder="Год издания" >
                     </div>
-                    <div class="col">
+                    &nbsp;
+                    <div class="col-7">
                         <input type="text" class="form-control" name="city" placeholder="Город издания" ><br>
                     </div>
                 </div>
@@ -39,82 +55,108 @@
                         <div class="col-7">
                             <input class="form-control" type="text" name="publisher" placeholder="Издательство как написано на книге" >
                         </div>
+                        &nbsp;
                         <div class="col-7">
                             <input class="form-control" type="text" name="publisher_unified" placeholder="Унифицированное издательство (Напр. Детгиз)" >
                         </div>
-                        <div class="col">
+                        &nbsp;
+                        <div class="col-7">
                             <input type="text" class="form-control" name="printrun" placeholder="Тираж" >
                         </div>
-                         <div class="col-7">
-                        <h1><font size="4" color="white" face="cambria">Выберите возрастную категорию книги:</h1>
+                        &nbsp;
+                        <div class="col-7">
+                        <h1><font size="3" color="white" face="cambria">Выберите возрастную категорию книги:</h1>
                         <input type="checkbox" name="kid" value="1"> Младший возраст<br>
                         <input type="checkbox" name="junior" value="1"> Средний возраст<br>
                         <input type="checkbox" name="youth" value="1" checked> Старший возраст<br></font>
                         </div>
+                        <div class="col-7">
+                            <label>Возрастная категория как написано в книге (если есть)</label>
+                            <input type="text" class="form-control" name="age_category" >
+                        </div>
+
                     <div class="form-row">
 
+&nbsp;
 
 <div class="container">
-    <h1><font size="6" color="white" face="cambria">Добавьте автора в корпус:</h1><br>
-            <form method = "post" action = "/add_book">
+    <h1><font size="4" color="white" face="cambria">Добавьте автора в корпус:</h1><br>
+            <form method = "post" action = "/">
                 <div class="form-row">
                     <div class="col-7">
                         <input class="form-control" type="text" name="last" placeholder="Фамилия автора" required>
                     </div>
-                    <div class="col">
+                    &nbsp;
+                    <div class="col-7">
                         <input type="text" class="form-control" name="first" placeholder="Имя автора" >
                     </div>
-                    <div class="col">
-                        <input type="text" class="form-control" name="middle" placeholder="Отчество" ><br>
+                    &nbsp;
+                    <div class="col-7">
+                        <input type="text" class="form-control" name="middle" placeholder="Отчество автора" ><br>
                     </div>
                 </div>
 
-            <div>
                 <div class="form-row">
                     <div class="col-7">
                         <input class="form-control" type="text" name="birth_year" placeholder="Год рождения" >
                     </div>
+                    &nbsp;
                 <div class="col-7">
                     <input type="text" class="form-control" name="death_year" placeholder="Год смерти" >
                 </div>
+                    &nbsp;
                 <div class="col-7">
-                    <h1><font size="4" color="white" face="cambria">Выберите пол автора:</h1>
+                    <h1><font size="3" color="white" face="cambria">Выберите пол автора:</h1>
                     <input type="radio" name="sex" value="М"> Мужской <br>
                     <input type="radio" name="sex" value="Ж"> Женский<br>
+                    <input type="radio" name="sex" value="NA"> Неизвестно<br>
                 </div>
-                <div class="form-row">
+            </div>
+</div>
+                        &nbsp;
+
+
 
 <div class="container">
-    <h1><font size="6" color="white" face="cambria">Оформите издание:</h1><br>
-            <form method = "post" action = "/add_book">
-                 <div class="form-row">
-                     <div class="col">
-                         <input class="form-control" type="text" name="author_name" placeholder="Имя и фамилия автора, как указано на книге (например, А.Гайдар, вместо Аркадия Гайдара)" required>
-                     </div>
-                     <div class="col">
-                         <input type="text" class="form-control" name="title" placeholder="Название книги" required >
-                     </div>
-                 </div>
+    <h1><font size="4" color="white" face="cambria">Добавьте информацию про псевдоним:</h1><br>
+            <form method = "post" action = "/">
+                        <label>Если фамилия - псевдоним, а имя и отчество нет,
+                            то пишем реальное имя/отчество и фамилию-псевдоним, ровно так же для имени-псевдонима:</label>
+                        &nbsp;
+                        <div class="form-row">
+                            <div class="col-7">
+                                <input class="form-control" type="text" name="last_p" placeholder="Фамилия автора">
+                            </div>
+                        &nbsp;
+                            <div class="col-7">
+                                <input type="text" class="form-control" name="first_p" placeholder="Имя автора" >
+                            </div>
+                        &nbsp;
+                            <div class="col-7">
+                                <input type="text" class="form-control" name="middle_p" placeholder="Отчество автора" ><br>
+                            </div>
+                        </div>
             </form>
+</div>
 
 
+    &nbsp;
 
-
-
-
-
-
-
-
- <font size="5" color="white" face="cambria" >
-                <button type="submit" class="btn btn-light" formmethod="post">Добавить</button>
+                <div> <font size="4" color="white" face="cambria" >
+                    <button type="submit" class="btn btn-light" formmethod="post">Добавить</button>
+                &nbsp;
                 <button type="reset" class="btn btn-light">Очистить</button>
-                <form method="post" action="/">
-                    <input type="button" class="btn btn-secondary" value="Назад" onclick="history.back()">
-                </form></font>
+                &nbsp;
+                </font>
+                </div>
 
-</div></body>
-    </form>
+
+
+
+
+
+
+ </body>
+
 </body>
 </body>
-
