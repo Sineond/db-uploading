@@ -37,7 +37,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app_child.config['UPLOAD_FOLDER'], filename))
-            conn = sqlite3.connect('child.sqlite')
+            conn = sqlite3.connect('detcorpus_consistent.db')
             conn.row_factory = dict_factory
             c = conn.cursor()
             return redirect('/add_user')
@@ -57,7 +57,7 @@ def add_book():
         meta_info['printrun'] = request.form.get('printrun')
         meta_info['kid'] = request.form.get('kid')
         meta_info['junior'] = request.form.get('junior')
-        meta_info['youth'] = request.form.get('youth')
+        meta_info['teen'] = request.form.get('teen')
         meta_info['age_category'] = request.form.get('age_category')
         meta_info_a = {}
         meta_info_a['author_id'] = request.form.get('author_id')
@@ -72,16 +72,16 @@ def add_book():
         meta_edit['title'] = request.form.get('title')
         meta_edit['book_id'] = request.form.get('book_id')
         meta_pseud = {}
-        meta_pseud['last_p'] = request.form.get('last_p')
-        meta_pseud['first_p'] = request.form.get('first_p')
-        meta_pseud['middle_p'] = request.form.get('middle_p')
+        meta_pseud['last'] = request.form.get('last')
+        meta_pseud['first'] = request.form.get('first')
+        meta_pseud['middle'] = request.form.get('middle')
 
-        conn = sqlite3.connect('child.sqlite')
+        conn = sqlite3.connect('detcorpus_consistent.db')
         c = conn.cursor()
         c.execute("INSERT INTO meta_books "
-                  "('booktitle', 'year', 'city', 'publisher', 'publisher_unified', 'printrun', 'kid', 'junior', 'youth')"
+                  "('booktitle', 'year', 'city', 'publisher', 'publisher_unified', 'printrun', 'kid', 'junior', 'teen')"
                   "VALUES "
-                  "('{booktitle}', '{year}', '{city}', '{publisher}', '{publisher_unified}', '{printrun}', '{kid}', '{junior}', '{youth}' )"
+                  "('{booktitle}', '{year}', '{city}', '{publisher}', '{publisher_unified}', '{printrun}', '{kid}', '{junior}', '{teen}' )"
                   "".format(**meta_info))
         c.execute("INSERT INTO meta_editions "
                   "('author_name', 'title', 'book_id')"
@@ -94,9 +94,9 @@ def add_book():
                   "('{last}', '{first}', '{middle}', '{sex}', '{birth_year}', '{death_year}')"
                   "".format(**meta_info_a))
         c.execute("INSERT INTO meta_pseudo "
-                  "('last_p', 'first_p', 'middle_p', 'author_id')"
+                  "('last', 'first', 'middle', 'author_id')"
                   "VALUES "
-                  "('{last_p}', '{first_p}', '{middle_p}', (SELECT last_insert_rowid()))"
+                  "('{last}', '{first}', '{middle}', (SELECT last_insert_rowid()))"
                   "".format(**meta_pseud))
 
         conn.commit()
@@ -115,7 +115,7 @@ def add_user():
         meta_user = {}
         meta_user['email'] = request.form.get('email')
         meta_user['name'] = request.form.get('name')
-        conn = sqlite3.connect('child.sqlite')
+        conn = sqlite3.connect('detcorpus_consistent.db')
         c = conn.cursor()
         c.execute("SELECT * FROM users where email='%s'" % meta_user['email'])
         if c.fetchone():
